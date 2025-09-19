@@ -26,7 +26,7 @@ sudo nano /etc/postfix/sasl/sasl_passwd
 Replace username and password with the SMTP provider credentials. You can also specify an API key if the provider allows it.
 
 Save the changes and exit.
-sudo postmap /etc/postfix/sasl_passwd
+sudo postmap /etc/postfix/sasl/sasl_passwd
 
 #Configure Main postfix config file :
 
@@ -47,8 +47,8 @@ sudo chown root:root /etc/postfix/sasl/sasl_passwd /etc/postfix/sasl/sasl_passwd
 sudo -R chmod 600 /etc/postfix
 
 # Increase allowed file size limit(max-50MB):
-
-sudo postconf -e 'message_size_limit = 30720000' 
+# currently 20 MB
+sudo postconf -e 'message_size_limit = 20971520' 
 sudo systemctl restart postfix
 
 # send mail:
@@ -76,6 +76,3 @@ sudo vim /etc/hosts
 127.0.0.1 localhost localhost.localdomain
 ::1 localhost localhost.localdomain
 
-#How to generate app Password for Gmail:
-
-https://knowledge.workspace.google.com/kb/how-to-create-app-passwords-000009237
